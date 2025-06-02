@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hari Krishna Bus Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe8d6 100%);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .intro {
+            text-align: center;
+            padding: 3rem 0;
+            background: white;
+            margin: 2rem 0;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .intro h2 {
+            color: #d4af37;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .tour-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid #d4af37;
+        }
+        
+        .tour-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .tour-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .tour-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 100%);
+        }
+        
+        .rajasthan-tour {
+            background-image: linear-gradient(45deg, #ff6b6b, #ffa500);
+        }
+        
+        .uttarakhand-tour {
+            background-image: linear-gradient(45deg, #4ecdc4, #44a08d);
+        }
+        
+        .chardham-tour {
+            background-image: linear-gradient(45deg, #667eea, #764ba2);
+        }
+        
+        .up-tour {
+            background-image: linear-gradient(45deg, #f093fb, #f5576c);
+        }
+        
+        .nainital-tour {
+            background-image: linear-gradient(45deg, #00b4db, #0083b0);
+        }
+        
+        .tour-content {
+            padding: 2rem;
+        }
+        
+        .tour-title {
+            font-size: 1.8rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .places-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .places-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .places-list li:before {
+            content: "🕉️";
+            margin-right: 10px;
+        }
+        
+        .duration {
+            background: #d4af37;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        
+        .book-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .book-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+        
+        .features {
+            background: white;
+            padding: 3rem 0;
+            margin: 2rem 0;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .features h3 {
+            color: #d4af37;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-item {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #d4af37;
+        }
+        
+        .contact {
+            background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        .contact h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .tours-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .intro h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>🕉️ Hari Krishna Bus Service 🕉️</h1>
+            <p>Sacred Pilgrimage Tours Across Divine India</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="intro">
+            <h2>Journey to Divine Destinations</h2>
+            <p>Experience the spiritual essence of India through our carefully curated pilgrimage tours. Each journey is designed to connect you with the divine while ensuring comfort and memorable experiences.</p>
+            <!-- Nainital Spiritual & Nature Tour -->
+            <div class="tour-card">
+                <div class="tour-image nainital-tour"></div>
+                <div class="tour-content">
+                    <h3 class="tour-title">Nainital Spiritual & Nature Tour</h3>
+                    <div class="duration">3 Days / 4 Nights</div>
+                    <ul class="places-list">
+                        <li>Naina Devi Temple - Shakti Peeth at Naini Lake</li>
+                        <li>Hanuman Garhi - Hilltop Hanuman Temple</li>
+                        <li>Bhimtal & Sattal - Sacred Lakes</li>
+                        <li>Mukteshwar Temple - Ancient Shiva Temple</li>
+                        <li>Neeb Karoli Dham -Hindu guru and a devotee of the Hindu deity Hanuman </li>
+                    </ul>
+                    <p>Combine spiritual bliss with natural beauty in the serene lakes and temples of Nainital hills.</p>
+                    <button class="book-btn">Book This Yatra</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="tours-grid">
+            <!-- Rajasthan Spiritual Circuit -->
+            <div class="tour-card">
+                <div class="tour-image rajasthan-tour"></div>
+                <div class="tour-content">
+                    <h3 class="tour-title">Rajasthan Spiritual Circuit</h3>
+                    <div class="duration">1 Days / 2 Nights</div>
+                    <ul class="places-list">
+                        <li>Khatu Shyam Ji Temple - Lord Krishna's Avatar</li>
+                        <li>Salasar Balaji - Powerful Hanuman Temple</li>
+                        <li>Rani Sati Temple - Divine Shakti Peeth</li>
+                        <li>Panchdev Temple - Lord Vishnu Avatar</li>
+                    </ul>
+                    <p>Explore the divine temples of Rajasthan, each with unique spiritual significance and miraculous stories.</p>
+                    <button class="book-btn">Book This Yatra</button>
+                </div>
+            </div>
+
+            <!-- Uttarakhand Spiritual Journey -->
+            <div class="tour-card">
+                <div class="tour-image uttarakhand-tour"></div>
+                <div class="tour-content">
+                    <h3 class="tour-title">Uttarakhand Spiritual Journey</h3>
+                    <div class="duration">2 Days / 3 Nights</div>
+                    <ul class="places-list">
+                        <li>Haridwar - Gateway to God</li>
+                        <li>Rishikesh - Yoga Capital of the World</li>
+                        <li>Neelkanth Mahadev - Sacred Shiva Temple</li>
+                    </ul>
+                    <p>Experience the holy Ganga Aarti, meditative ashrams, and the serene Himalayan spirituality.</p>
+                    <button class="book-btn">Book This Yatra</button>
+                </div>
+            </div>
+
+            <!-- Uttarakhand Char Dham -->
+            <div class="tour-card">
+                <div class="tour-image chardham-tour"></div>
+                <div class="tour-content">
+                    <h3 class="tour-title">Uttarakhand Char Dham Yatra</h3>
+                    <div class="duration">12 Days / 11 Nights</div>
+                    <ul class="places-list">
+                        <li>Yamunotri - Source of River Yamuna</li>
+                        <li>Gangotri - Origin of Holy Ganga</li>
+                        <li>Kedarnath - Sacred Jyotirlinga</li>
+                        <li>Badrinath - Holy Vishnu Temple</li>
+                    </ul>
+                    <p>Complete the sacred Char Dham circuit in the lap of Himalayas for ultimate spiritual fulfillment.</p>
+                    <button class="book-btn">Book This Yatra</button>
+                </div>
+            </div>
+
+            <!-- Uttar Pradesh Spiritual Triangle -->
+            <div class="tour-card">
+                <div class="tour-image up-tour"></div>
+                <div class="tour-content">
+                    <h3 class="tour-title">UP Spiritual Triangle</h3>
+                    <div class="duration">3 Days / 4 Nights</div>
+                    <ul class="places-list">
+                        <li>Ayodhya - Birthplace of Lord Rama</li>
+                        <li>Varanasi - Oldest Living City</li>
+                        <li>Prayagraj - Triveni Sangam</li>
+                    </ul>
+                    <p>Visit the most sacred cities of India where spirituality and history converge beautifully.</p>
+                    <button class="book-btn">Book This Yatra</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h3>Why Choose Our Hari krishna Bus Service?</h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h4>🚐 Comfortable Transportation</h4>
+                    <p>AC vehicles with experienced drivers familiar with pilgrimage routes</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🏨 Spiritual Accommodation</h4>
+                    <p>Stay in dharamshalas and hotels near temples for early morning prayers</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🍽️ Sattvic Meals</h4>
+                    <p>Pure vegetarian meals prepared with devotion and care</p>
+                </div>
+                <div class="feature-item">
+                    <h4>👨‍🏫 Expert Guides</h4>
+                    <p>Knowledgeable guides sharing spiritual significance and temple history</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact">
+            <h3>Book Your Sacred Journey Today</h3>
+            <p>Let us guide you on a transformative spiritual experience across India's most revered destinations</p>
+            <div class="contact-info">
+                <div>
+                    <h4>📞 Call Us</h4>
+                    <p>+91-8368194009</p>
+                    <p>+91-8700579949</p>
+                </div>
+                <div>
+                    <h4>📧 Email Us</h4>
+                    <p>info.harikrishnabusservice@gmail.com
+</p>
+                </div>
+                
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Add smooth scrolling and interactive features
+        document.querySelectorAll('.book-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tourTitle = this.closest('.tour-card').querySelector('.tour-title').textContent;
+                alert(`Thank you for your interest in ${tourTitle}! Please call us at +91-XXXXX-XXXXX to book your spiritual journey.`);
+            });
+        });
+
+        // Add floating animation to tour cards
+        const cards = document.querySelectorAll('.tour-card');
+        cards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+        });
+    </script>
+</body>
+</html>
